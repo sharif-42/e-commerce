@@ -26,8 +26,8 @@ class BaseModel(models.Model):
         blank=True, null=True,
         related_name='updators',
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(null=True, blank=True, auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True,)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
 
 
 class EmailTemplate(BaseModel):
