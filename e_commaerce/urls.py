@@ -4,6 +4,7 @@ from django.urls import path, include
 
 api_patterns = (
     [
+        path("users/", include('user.rest_api.urls')),
 
     ], "api")
 
@@ -11,5 +12,4 @@ api_patterns = (
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/v1/", include(api_patterns, namespace=settings.API_VERSION_NAMESPACE)),
-    path("users/", include(api_patterns, namespace=settings.API_VERSION_NAMESPACE)),
 ]
