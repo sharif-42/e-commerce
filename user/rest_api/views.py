@@ -1,3 +1,22 @@
-from django.shortcuts import render
+from rest_framework import status
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-# Create your views here.
+from user.serializer.user_serializer import UserSerializer
+from user.models import User
+
+
+class UserListCreateAPIView(APIView):
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        user = User.objects.all()
+        serializer = self.serializer_class(user, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
+class UserRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
+    serializer_class = ''
+    permission_classes = ''
+
