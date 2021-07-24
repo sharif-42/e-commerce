@@ -7,10 +7,10 @@ from user.serializer.user_serializer import UserSerializer
 from user.models import User
 
 
-class UserListCreateAPIView(APIView):
+class UserListCreateAPIView(ListCreateAPIView):
     serializer_class = UserSerializer
 
-    def get(self, request, *args, **kwargs):
+    def list(self, request, *args, **kwargs):
         user = User.objects.all()
         serializer = self.serializer_class(user, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
