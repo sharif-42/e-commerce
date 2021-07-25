@@ -34,6 +34,7 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.is_dashboard_user = True
         user.is_pending = False
+        user.is_active = True
         user.save(using=self._db)
         return user
 
