@@ -17,6 +17,7 @@ class BaseModel(models.Model):
         User,
         on_delete=models.CASCADE,
         help_text=_('who created.'),
+        blank=True, null=True,
         related_name='creators'
     )
     updated_by = models.ForeignKey(
