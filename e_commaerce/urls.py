@@ -5,6 +5,7 @@ from django.urls import path, include
 api_patterns = (
     [
         path("users/", include('user.rest_api.urls')),
+        path("search/", include('search.rest_api.urls')),
 
     ], "api")
 

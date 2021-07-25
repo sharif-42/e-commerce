@@ -29,5 +29,5 @@ cat <file_path> | docker exec -i itbutton-web_db_1 psql -U postgres
 docker exec -it e-commerce_web_1 sh -c "python manage.py shell_plus"
 # migration commands
 docker exec -it e-commerce_web_1 sh -c "python manage.py makemigrations"
-docker exec -it e-commerce_web_1 sh -c "python manage.py makemigrations"
+docker exec -it e-commerce_web_1 sh -c "python manage.py migrate"
 ```
