@@ -1,5 +1,9 @@
 version: '3.7'
 
+volumes:
+  postgres_data: { }
+  elasticsearch_data: { }
+
 services:
   web:
     build: .
@@ -12,6 +16,18 @@ services:
       - ./.env.dev
     depends_on:
       - db
+      - elasticsearch
+    networks:
+      core_backend_network:
+        aliases:
+          - e-commerce
+      default:
+    links:
+      - db
+      - elasticsearch
+    stdin_open: true
+    tty: true
+
   db:
     image: postgres:12.0-alpine
     volumes:
@@ -21,5 +37,23 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
 
-volumes:
-  postgres_data:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.4
+    container_name: elastic_search
+    environment:
+      - node.name=elastic_search
+      - cluster.name=es-docker-cluster
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+
+networks:
+  core_backend_network:
+    driver: bridge
