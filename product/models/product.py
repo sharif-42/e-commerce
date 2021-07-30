@@ -74,6 +74,10 @@ class Product(BaseModel):
         default=False,
         help_text=_("Is the product serviceable")
     )
+    is_available = models.BooleanField(
+        default=True,
+        help_text=_("Is the product available?")
+    )
 
     valid_from = models.DateTimeField(
         null=True,

@@ -30,4 +30,13 @@ docker exec -it e-commerce_web_1 sh -c "python manage.py shell_plus"
 # migration commands
 docker exec -it e-commerce_web_1 sh -c "python manage.py makemigrations"
 docker exec -it e-commerce_web_1 sh -c "python manage.py migrate"
+# create super user
+docker exec -it e-commerce_web_1 sh -c "python manage.py createsuperuser"
+```
+
+## Re Index
+```shell
+docker exec -it e-commerce_web_1 sh -c "python manage.py search_index --rebuild -f"  # reindex
+docker exec -it e-commerce_web_1 sh -c "python manage.py search_index --delete -f" # delete index
+docker exec -it e-commerce_web_1 sh -c "python manage.py search_index --populate -f" # populate data
 ```

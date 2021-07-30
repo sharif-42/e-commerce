@@ -29,6 +29,7 @@ class ProductDocument(Document):
         'is_available': fields.BooleanField(),
     })
     unit = fields.IntegerField()
+    uuid = fields.TextField()
 
     class Index:
         # Name of the Elasticsearch index
@@ -48,6 +49,7 @@ class ProductDocument(Document):
             'short_description',
             'long_description',
             'pre_order',
+            'is_available',
             'is_serviceable',
             'image_thumbnail',
             'image_alternative_1',
