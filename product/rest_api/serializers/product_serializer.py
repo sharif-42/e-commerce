@@ -8,24 +8,26 @@ class ProductOutPutSerializer(serializers.ModelSerializer):
     brand = serializers.SerializerMethodField()
     product_type = serializers.SerializerMethodField()
     image_thumbnail = serializers.SerializerMethodField()
+    image_alternative_1 = serializers.SerializerMethodField()
+    image_alternative_2 = serializers.SerializerMethodField()
+    image_alternative_3 = serializers.SerializerMethodField()
+    image_alternative_4 = serializers.SerializerMethodField()
 
     class Meta:
         model = Product
         fields = [
             "uuid",
             "name",
-            "unit",
             "brand",
             "product_group",
             "product_type",
             "short_description",
-            "long_description",
-            "weight",
-            "release_date",
             "pre_order",
-            "is_serviceable",
             "image_thumbnail",
-
+            "image_alternative_1",
+            "image_alternative_2",
+            "image_alternative_3",
+            "image_alternative_4",
         ]
 
     def get_product_group(self, instance):
@@ -39,3 +41,15 @@ class ProductOutPutSerializer(serializers.ModelSerializer):
 
     def get_image_thumbnail(self, instance):
         return instance.image_thumbnail.url if instance.image_thumbnail else None
+
+    def get_image_alternative_1(self, instance):
+        return instance.image_alternative_1.url if instance.image_alternative_1 else None
+
+    def get_image_alternative_2(self, instance):
+        return instance.image_alternative_2.url if instance.image_alternative_2 else None
+
+    def get_image_alternative_3(self, instance):
+        return instance.image_alternative_3.url if instance.image_alternative_3 else None
+
+    def get_image_alternative_4(self, instance):
+        return instance.image_alternative_4.url if instance.image_alternative_4 else None

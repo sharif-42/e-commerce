@@ -1,7 +1,6 @@
 from django.utils import timezone
 from elasticsearch_dsl import Q
 
-from product.models import Product
 from ..documents import ProductDocument
 
 
@@ -20,7 +19,8 @@ class ProductSearchService:
         if search_keyword:
             es_query = es_query.query(
                 Q("match", name=search_keyword)
+                | Q('match', brand__name=search_keyword)
+                | Q('match', product_group__name=search_keyword)
+                | Q('match', product_type__name=search_keyword)
             )
         return es_query.execute()
-
-

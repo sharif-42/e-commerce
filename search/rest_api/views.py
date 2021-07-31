@@ -1,17 +1,14 @@
 from rest_framework import status
-from rest_framework.generics import ListAPIView, ListCreateAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
-from product.models import Product
-from .serializer import ProductOutPutSerializer
 from ..services.product_search_service import ProductSearchService
+from product.rest_api.serializers.product_serializer import ProductOutPutSerializer
 
 
 class ProductSearchAPIView(ListAPIView):
     service_class = ProductSearchService
     serializer_class = ProductOutPutSerializer
-    # queryset = Product.objects.all()
 
     def get(self, request, *args, **kwargs):
         query_params_dict = self.request.query_params.dict()

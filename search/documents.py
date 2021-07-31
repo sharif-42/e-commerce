@@ -55,6 +55,7 @@ class ProductDocument(Document):
             'image_alternative_1',
             'image_alternative_2',
             'image_alternative_3',
+            'image_alternative_4',
             'valid_from',
             'valid_until',
 
